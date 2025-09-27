@@ -1,644 +1,453 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Cuts Barber Shop</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Sujeet Hair Cutting - Premium Barber Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        /* Reset and Base Styles */
+        /* Global Reset and Typography */
+        :root {
+            --primary-color: #1a1a1a; /* Dark Charcoal/Black */
+            --accent-color: #ffc107; /* Gold/Yellow for CTA/Highlight */
+            --text-light: #f4f4f4;
+            --text-dark: #333;
+            --font-family: 'Montserrat', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: var(--font-family);
             line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-            overflow-x: hidden;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            scroll-behavior: smooth; /* Smooth scrolling for internal links */
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .section {
-            padding: 80px 0;
+        a:hover {
+            color: #ffd740;
         }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: #222;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: #D4AF37;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Header & Navigation */
+        .header {
+            background-color: rgba(26, 26, 26, 0.95);
+            color: var(--text-light);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .nav-logo a {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #D4AF37;
-            text-decoration: none;
+        .logo {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: var(--accent-color);
         }
 
         .nav-menu {
             display: flex;
-            gap: 30px;
         }
 
-        .nav-link {
-            color: #fff;
-            text-decoration: none;
+        .nav-menu a {
+            color: var(--text-light);
+            margin-left: 25px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            padding: 5px 0;
             position: relative;
+            transition: color 0.3s;
         }
 
-        .nav-link:hover {
-            color: #D4AF37;
+        .nav-menu a:hover {
+            color: var(--accent-color);
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #D4AF37;
-            transition: width 0.3s ease;
+        .cta-nav-btn {
+            background-color: var(--accent-color);
+            color: var(--primary-color) !important;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
-        .nav-link:hover::after {
-            width: 100%;
+        .cta-nav-btn:hover {
+            background-color: #ffd740;
+            transform: scale(1.05);
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
+        .menu-toggle {
+            display: none; /* Hide on desktop */
+            font-size: 2em;
             cursor: pointer;
         }
 
-        .bar {
-            width: 25px;
-            height: 3px;
-            background: #fff;
-            margin: 3px 0;
-            transition: 0.3s;
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://via.placeholder.com/1920x1080?text=Barber+Shop+Background') no-repeat center center/cover;
+            position: relative;
+            padding-top: 60px; /* Space for fixed header */
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Dark Overlay */
         }
 
         .hero-content {
+            position: relative;
+            z-index: 10;
             max-width: 800px;
-            padding: 0 20px;
         }
 
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: #D4AF37;
+        .hero-content h1 {
+            font-size: 4.5em;
+            font-weight: 900;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            /* Subtle Text Glow Animation (Unique Animation) */
+            animation: text-glow 1.5s infinite alternate;
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
+        @keyframes text-glow {
+            from { text-shadow: 0 0 5px rgba(255, 193, 7, 0.5); }
+            to { text-shadow: 0 0 15px rgba(255, 193, 7, 0.9), 0 0 20px rgba(255, 193, 7, 0.4); }
+        }
+
+        .hero-content h2 {
+            font-size: 2em;
+            font-weight: 400;
+            color: var(--text-light);
             margin-bottom: 30px;
-            font-weight: 300;
         }
 
-        .cta-button {
+        .cta-whatsapp-btn {
             display: inline-block;
-            background: #D4AF37;
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
+            background-color: #25d366; /* WhatsApp Green */
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
             font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid #D4AF37;
+            border-radius: 50px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
-        .cta-button:hover {
-            background: transparent;
-            color: #D4AF37;
+        .cta-whatsapp-btn:hover {
+            background-color: #128c7e;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin-bottom: 50px;
+            font-weight: 700;
         }
 
         /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .services-section {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+        }
+
+        .services-container {
+            display: flex;
+            justify-content: center;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
         .service-card {
-            background: #fff;
-            padding: 30px;
+            background-color: var(--primary-color);
+            padding: 40px 30px;
             border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .service-icon {
-            font-size: 3rem;
+        .service-card .icon {
+            font-size: 3em;
+            color: var(--accent-color);
+            display: block;
             margin-bottom: 15px;
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.5em;
             margin-bottom: 10px;
-            color: #222;
+            color: var(--text-light);
         }
 
         .service-card p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            display: inline-block;
-            background: #D4AF37;
-            color: #000;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #222;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-
-        .team-member {
-            text-align: center;
-        }
-
-        .member-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 15px;
-            border: 3px solid #D4AF37;
-        }
-
-        .member-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-member h4 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            color: #222;
-        }
-
-        .team-member p {
-            color: #666;
+            color: #ccc;
         }
 
         /* Gallery Section */
+        .gallery-section {
+            background-color: var(--primary-color);
+        }
+
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 30px;
         }
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            height: 300px;
-        }
-
-        .gallery-item img {
+        .gallery-grid img {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
+        .gallery-grid img:hover {
+            transform: scale(1.05);
         }
 
         /* Contact Section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+        .contact-section {
+            background-color: var(--text-dark);
         }
 
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #222;
-        }
-
-        .contact-info p {
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        .whatsapp-button {
-            display: inline-block;
-            background: #25D366;
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 700;
-            margin-top: 20px;
-            transition: background 0.3s ease;
-        }
-
-        .whatsapp-button:hover {
-            background: #128C7E;
-        }
-
-        .map-container {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .contact-details p {
+            font-size: 1.1em;
+            margin: 15px 0;
+            color: var(--text-light);
         }
 
         /* Footer */
         .footer {
-            background: #222;
-            color: #fff;
-            padding: 50px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h3, .footer-section h4 {
-            color: #D4AF37;
-            margin-bottom: 15px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: #D4AF37;
-        }
-
-        .footer-bottom {
+            background-color: var(--primary-color);
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #444;
-            color: #ccc;
+            padding: 20px 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9em;
+            color: #888;
         }
 
-        /* Animation for sections */
-        .fade-in {
+        /* --- Unique Animation CSS (Fade-In on Scroll) --- */
+        .fade-in-element {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .fade-in.visible {
+        .fade-in-element.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Responsive Design */
+        /* --- Responsive Design (Mobile First) --- */
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-            
             .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(0, 0, 0, 0.95);
+                display: none;
                 flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 50px;
-                transition: left 0.3s ease;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: rgba(26, 26, 26, 0.98);
+                padding: 10px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
             
             .nav-menu.active {
-                left: 0;
+                display: flex;
             }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
+            .nav-menu a {
+                margin: 10px 0;
+                padding: 10px 5%;
+                text-align: center;
             }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
+
+            .menu-toggle {
+                display: block;
             }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
+
+            .hero-content h1 {
+                font-size: 3em;
             }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
+
+            .hero-content h2 {
+                font-size: 1.5em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .services-container {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
-</head>
+    </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">Classic Cuts</a>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#about" class="nav-link">About Us</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Classic Cuts Barber Shop</h1>
-            <p class="hero-subtitle">Where Style Meets Tradition</p>
-            <a href="#contact" class="cta-button">Book Appointment</a>
+    <header class="header">
+        <div class="logo">Sujeet Hair Cutting</div>
+        <nav class="nav-menu">
+            <a href="#home">होम</a>
+            <a href="#services">सेवाएँ</a>
+            <a href="#gallery">गैलरी</a>
+            <a href="#contact">संपर्क</a>
+            <a href="#appointment" class="cta-nav-btn">अपॉइंटमेंट</a>
+        </nav>
+        <div class="menu-toggle">☰</div>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content fade-in-element">
+            <h1>Sujeet Hair Cutting</h1>
+            <h2>जहाँ स्टाइल मिलता है शार्पनेस से</h2>
+            <p>हर कट एक मास्टरपीस है। आज ही अपना लुक बदलें।</p>
+            
+            <a href="https://wa.me/91XXXXXXXXXX?text=नमस्ते%2C%20मैं%20Sujeet%20Hair%20Cutting%20में%20अपॉइंटमेंट%20बुक%20करना%20चाहता%2Fचाहती%20हूँ।" 
+               target="_blank" 
+               class="cta-whatsapp-btn"
+               id="appointment">
+               ✂️ WhatsApp पर अपॉइंटमेंट बुक करें
+            </a>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section fade-in">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">✂️</div>
-                    <h3>Classic Haircut</h3>
-                    <p>Traditional haircut with precision styling</p>
-                    <span class="price">$25</span>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🧔</div>
-                    <h3>Beard Trim</h3>
-                    <p>Expert beard shaping and grooming</p>
-                    <span class="price">$15</span>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💈</div>
-                    <h3>Haircut & Beard</h3>
-                    <p>Complete grooming package</p>
-                    <span class="price">$35</span>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🧴</div>
-                    <h3>Hot Towel Shave</h3>
-                    <p>Relaxing traditional straight razor shave</p>
-                    <span class="price">$30</span>
-                </div>
+    <section id="services" class="services-section">
+        <h2 class="section-title fade-in-element">हमारी प्रीमियम सेवाएँ</h2>
+        <div class="services-container">
+            <div class="service-card fade-in-element">
+                <span class="icon">💈</span>
+                <h3>सिग्नेचर हेयरकट</h3>
+                <p>ट्रेंडिंग स्टाइल और क्लासिक कट्स, आपकी पर्सनालिटी के अनुसार।</p>
+            </div>
+            <div class="service-card fade-in-element">
+                <span class="icon">🔪</span>
+                <h3>प्रोफेशनल शेविंग</h3>
+                <p>गर्म तौलिये और प्रीमियम उत्पादों के साथ स्मूथ और आरामदायक शेव।</p>
+            </div>
+            <div class="service-card fade-in-element">
+                <span class="icon">💆‍♂️</span>
+                <h3>फेस केयर</h3>
+                <p>क्वालिटी फेशियल और मसाज से अपनी त्वचा को दें नया जीवन।</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section fade-in">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Our Story</h3>
-                    <p>Established in 2005, Classic Cuts has been serving the community with traditional barbering techniques combined with modern styles. Our experienced barbers are dedicated to providing you with the perfect look that suits your personality.</p>
-                    <p>We believe that a great haircut is more than just a service - it's an experience that boosts confidence and leaves you feeling refreshed.</p>
-                </div>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-photo">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Mike Johnson">
-                        </div>
-                        <h4>Mike Johnson</h4>
-                        <p>Head Barber & Owner</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-photo">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Carlos Rodriguez">
-                        </div>
-                        <h4>Carlos Rodriguez</h4>
-                        <p>Master Barber</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-photo">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="James Wilson">
-                        </div>
-                        <h4>James Wilson</h4>
-                        <p>Senior Barber</p>
-                    </div>
-                </div>
-            </div>
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title fade-in-element">हमारा काम</h2>
+        <div class="gallery-grid">
+            <img src="https://via.placeholder.com/300x200?text=Haircut+1" alt="Haircut Example 1" class="fade-in-element">
+            <img src="https://via.placeholder.com/300x200?text=Shave+2" alt="Shave Example 2" class="fade-in-element">
+            <img src="https://via.placeholder.com/300x200?text=Beard+3" alt="Beard Example 3" class="fade-in-element">
+            <img src="https://via.placeholder.com/300x200?text=Style+4" alt="Style Example 4" class="fade-in-element">
+        </div>
+        <p class="fade-in-element">**(नोट: कृपया इन प्लेसहोल्डर इमेज को अपनी वास्तविक तस्वीरों से बदलें)**</p>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title fade-in-element">हमसे संपर्क करें</h2>
+        <div class="contact-details fade-in-element">
+            <p>📍 **पता:** [आपकी दुकान का पूरा पता यहाँ लिखें]</p>
+            <p>⏰ **समय:** सोमवार से शनिवार: 10:00 AM - 9:00 PM | रविवार: बंद</p>
+            <p>📞 **फ़ोन:** XXXXX XXXXX</p>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="section fade-in">
-        <div class="container">
-            <h2 class="section-title">Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="Before haircut">
-                    <div class="gallery-overlay">
-                        <p>Before</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1621607512214-68297480165e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="After haircut">
-                    <div class="gallery-overlay">
-                        <p>After</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1567894340319-78d37a8f5d8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Style 1">
-                    <div class="gallery-overlay">
-                        <p>Classic Cut</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1593705114312-a0ee03d60c9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Style 2">
-                    <div class="gallery-overlay">
-                        <p>Modern Fade</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Style 3">
-                    <div class="gallery-overlay">
-                        <p>Beard Grooming</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1594736797933-d0b4ec4d7d5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Style 4">
-                    <div class="gallery-overlay">
-                        <p>Hot Towel Shave</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <footer class="footer">
+        <p>&copy; 2024 Sujeet Hair Cutting. All rights reserved. | डिज़ाइन: HTML, CSS & JS</p>
+    </footer>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section fade-in">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Visit Our Shop</h3>
-                    <p><strong>Address:</strong> 123 Main Street, Cityville, ST 12345</p>
-                    <p><strong>Phone:</strong> (555) 123-4567</p>
-                    <p><strong>Hours:</strong><br>
-                        Mon-Fri: 9am - 7pm<br>
-                        Sat: 8am - 6pm<br>
-                        Sun: 10am - 4pm
-                    </p>
-                    <a href="https://wa.me/15551234567?text=Hello%20I%20want%20t
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked (for smooth scrolling)
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // 2. Intersection Observer for Fade-In Animation (Unique Animation)
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of the element must be visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element is visible, add the class to start animation
+                        entry.target.classList.add('is-visible');
+                        // Stop observing after it has faded in once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+    </body>
+</html>
